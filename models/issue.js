@@ -9,12 +9,14 @@ const Issue = sequelize.define('Issue', {
         primaryKey: true
     },
 
-    employee_name: {
-        type: DataTypes.STRING
+    employee_id: {
+        type: DataTypes.INTEGER,
+        allowNull: true
     },
 
-    asset_name: {
-        type: DataTypes.STRING
+    asset_id: {
+        type: DataTypes.INTEGER,
+        allowNull: true
     },
 
     issue_date: {

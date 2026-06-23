@@ -6,6 +6,23 @@ const Asset = require('./models/Asset');
 const Issue = require('./models/Issue');
 const Return = require('./models/Return');
 const Scrap= require('./models/Scrap');
+
+Employee.hasMany(Issue, {
+    foreignKey: 'employee_id'
+});
+
+Issue.belongsTo(Employee, {
+    foreignKey: 'employee_id'
+});
+
+Asset.hasMany(Issue, {
+    foreignKey: 'asset_id'
+});
+
+Issue.belongsTo(Asset, {
+    foreignKey: 'asset_id'
+});
+
 const {Op} = require('sequelize');
 
 
@@ -36,7 +53,7 @@ sequelize.sync()
 
 // Home page
 app.get('/', (req, res) => {
-    res.send('Welcome to Asset Management System');
+    res.render('home');
 });
 
 // Start server
@@ -333,6 +350,16 @@ app.get('/asset-history', async (req, res) => {
         scraps
     });
 
+});
+
+app.get('/test-employees', async (req, res) => {
+    const employees = await Employee.findAll();
+    res.json(employees);
+});
+
+app.get('/test-assets', async (req, res) => {
+    const assets = await Asset.findAll();
+    res.json(assets);
 });
 
 app.listen(3000, () => {
