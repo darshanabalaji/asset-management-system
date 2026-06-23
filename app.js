@@ -52,8 +52,31 @@ sequelize.sync()
     });
 
 // Home page
-app.get('/', (req, res) => {
-    res.render('home');
+app.get('/', async (req, res) => {
+
+    const totalEmployees = await Employee.count();
+    const totalAssets = await Asset.count();
+
+    const issuedAssets = await Asset.count({
+        where: { status: 'Issued' }
+    });
+
+    const inStockAssets = await Asset.count({
+        where: { status: 'In Stock' }
+    });
+
+    const scrappedAssets = await Asset.count({
+        where: { status: 'Scrapped' }
+    });
+
+    res.render('home', {
+        totalEmployees,
+        totalAssets,
+        issuedAssets,
+        inStockAssets,
+        scrappedAssets
+    });
+
 });
 
 // Start server
