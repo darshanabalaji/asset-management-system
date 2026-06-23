@@ -1,7 +1,7 @@
 html
   head
     title Asset List
-
+    link(rel='stylesheet', href='/css/style.css')
   body
 
     h1 Asset List
@@ -36,3 +36,8 @@ html
            a(href='/assets/edit/'+asset.asset_id) Edit 
            | |
            a(href='/assets/delete/'+asset.asset_id) Delete
+
+    br
+
+    a(href='/')
+     button Back to Dashboard

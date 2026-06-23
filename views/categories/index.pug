@@ -1,11 +1,16 @@
 html
   head
     title Asset Categories
-
+    link(rel='stylesheet', href='/css/style.css')
   body
     h1 Asset Categories
 
     ul
      each category in categories
       li=category.category_name
+
+      br
+
+      a(href='/')
+       button Back to Dashboard
       

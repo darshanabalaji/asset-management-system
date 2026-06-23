@@ -1,7 +1,7 @@
 html
   head
     title Employees
-
+    link(rel='stylesheet', href='/css/style.css')
   body
 
     h1 Employee List
@@ -37,3 +37,7 @@ html
               href='/employees/delete/' + employee.employee_id
               onclick="return confirm('Are you sure you want to delete this employee?')"
             ) Delete
+    br
+
+    a(href='/')
+     button Back to Dashboard

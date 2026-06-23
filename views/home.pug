@@ -1,50 +1,57 @@
-h1 Asset Management System
+doctype html
+html
+  head
+    title Asset Management System
+    link(rel='stylesheet', href='/css/style.css')
+    
+  body
 
-h2 Dashboard
+    h1 Asset Management System
 
-p Total Employees: #{totalEmployees}
-p Total Assets: #{totalAssets}
-p Issued Assets: #{issuedAssets}
-p In Stock Assets: #{inStockAssets}
-p Scrapped Assets: #{scrappedAssets}
+    h2 Dashboard
 
-hr
+    div(class='dashboard-card')
+      h3 Total Employees
+      p #{totalEmployees}
 
-a(href='/employees')
-    button Employees
+    div(class='dashboard-card')
+      h3 Total Assets
+      p #{totalAssets}
 
-br
-br
+    div(class='dashboard-card')
+      h3 Issued Assets
+      p #{issuedAssets}
 
-a(href='/assets')
-    button Assets
+    div(class='dashboard-card')
+      h3 In Stock Assets
+      p #{inStockAssets}
 
-br
-br
+    div(class='dashboard-card')
+      h3 Scrapped Assets
+      p #{scrappedAssets}
 
-a(href='/issue-asset')
-    button Issue Asset
+    hr
 
-br
-br
+    a(href='/employees')
+      button Employees
 
-a(href='/return-asset')
-    button Return Asset
+    a(href='/assets')
+      button Assets
 
-br
-br
+    a(href='/issue-asset')
+      button Issue Asset
 
-a(href='/scrap-asset')
-    button Scrap Asset
+    a(href='/return-asset')
+      button Return Asset
 
-br
-br
+    a(href='/scrap-asset')
+      button Scrap Asset
 
-a(href='/stock')
-    button Stock Report
+    a(href='/stock')
+      button Stock Report
 
-br
-br
+    a(href='/asset-history')
+      button Asset History
 
-a(href='/asset-history')
-    button Asset History
+    a(href='/logout')
+      button Logout

@@ -1,7 +1,7 @@
 html
   head
     title Stock View
-
+    link(rel='stylesheet', href='/css/style.css')
   body
 
     h1 Asset Stock View
@@ -21,3 +21,7 @@ html
           td= asset.asset_name
           td= asset.serial_number
           td= asset.status
+    br
+
+    a(href='/')
+      button Back to Dashboard

@@ -1,7 +1,7 @@
 html
   head
     title Asset History
-
+    link(rel='stylesheet', href='/css/style.css')
   body
 
     h1 Asset History
@@ -49,3 +49,8 @@ html
         tr
           td= scrap.asset_name
           td= scrap.scrap_date
+
+    br
+
+    a(href='/')
+      button Back to Dashboard

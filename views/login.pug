@@ -1,17 +1,24 @@
-h1 Admin Login
+html
+  head
+    title Admin Login
+    link(rel='stylesheet', href='/css/style.css')
 
-form(method='POST', action='/login')
+  body
 
-    label Username:
-    input(type='text', name='username')
+    h1 Admin Login
 
-    br
-    br
+    form(method='POST', action='/login')
 
-    label Password:
-    input(type='password', name='password')
+      label Username:
+      input(type='text', name='username')
 
-    br
-    br
+      br
+      br
 
-    button(type='submit') Login
+      label Password:
+      input(type='password', name='password')
+
+      br
+      br
+
+      button(type='submit') Login
