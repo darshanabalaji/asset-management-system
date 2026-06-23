@@ -11,12 +11,20 @@ const Issue = sequelize.define('Issue', {
 
     employee_id: {
         type: DataTypes.INTEGER,
-        allowNull: true
+        allowNull: true,
+        references: {
+            model: 'Employees',
+            key: 'employee_id'
+        }
     },
 
     asset_id: {
         type: DataTypes.INTEGER,
-        allowNull: true
+        allowNull: true,
+        references: {
+            model: 'Assets',
+            key: 'asset_id'
+        }
     },
 
     issue_date: {

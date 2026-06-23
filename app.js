@@ -1,4 +1,5 @@
 const express = require('express');
+const session = require('express-session');
 const sequelize = require('./config/database');
 const Category = require('./models/Category');
 const Employee= require('./models/Employee');
@@ -29,9 +30,47 @@ const {Op} = require('sequelize');
 
 const app = express();
 
+app.use(session({
+    secret: 'assetmanagement',
+    resave: false,
+    saveUninitialized: true
+}));
+
+
 app.use(express.urlencoded({extended: true}));
 app.set('view engine','pug');
 app.set('views','./views');
+
+function checkAdmin(req, res, next) {
+
+    if (req.session.isAdmin) {
+        return next();
+    }
+
+    res.redirect('/login');
+}
+
+app.get('/login', (req, res) => {
+    res.render('login');
+});
+
+app.post('/login', (req, res) => {
+
+    const { username, password } = req.body;
+
+    if (username === 'admin' && password === 'admin123') {
+        req.session.isAdmin = true;
+        return res.redirect('/');
+    }
+
+    res.send('Invalid Username or Password');
+
+});
+
+app.get('/logout', (req, res) => {
+    req.session.destroy();
+    res.redirect('/login');
+});
 
 // Test database connection
 sequelize.authenticate()
@@ -52,7 +91,7 @@ sequelize.sync()
     });
 
 // Home page
-app.get('/', async (req, res) => {
+app.get('/', checkAdmin,async (req, res) => {
 
     const totalEmployees = await Employee.count();
     const totalAssets = await Asset.count();
@@ -87,7 +126,7 @@ app.post('/add-category',async(req,res)=>{
     res.redirect('/categories');
 });
 
-app.get('/add-employee',(req,res)=>{
+app.get('/add-employee',checkAdmin,(req,res)=>{
     res.render('employees/add');
 });
 
@@ -105,7 +144,7 @@ app.post('/add-employee', async (req, res) => {
 
 });
 
-app.get('/employees', async (req, res) => {
+app.get('/employees', checkAdmin,async (req, res) => {
 
     const employees = await Employee.findAll();
 
@@ -164,7 +203,7 @@ app.get('/employees/search', async (req, res) => {
 
 });
 
-app.get('/add-asset', (req, res) => {
+app.get('/add-asset',checkAdmin, (req, res) => {
     res.render('assets/add');
 });
 
@@ -271,7 +310,7 @@ app.get('/assets/search', async (req, res) => {
 
 });
 
-app.get('/stock', async (req, res) => {
+app.get('/stock', checkAdmin, async (req, res) => {
 
     const assets = await Asset.findAll();
 
@@ -281,7 +320,7 @@ app.get('/stock', async (req, res) => {
 
 });
 
-app.get('/issue-asset', (req, res) => {
+app.get('/issue-asset',checkAdmin,(req, res) => {
     res.render('assets/issue');
 });
 
@@ -308,7 +347,7 @@ app.post('/issue-asset', async (req, res) => {
 
 });
 
-app.get('/return-asset', (req, res) => {
+app.get('/return-asset',checkAdmin, (req, res) => {
     res.render('assets/return');
 });
 
@@ -335,7 +374,7 @@ app.post('/return-asset', async (req, res) => {
 
 });
 
-app.get('/scrap-asset', (req, res) => {
+app.get('/scrap-asset',checkAdmin, (req, res) => {
     res.render('assets/scrap');
 });
 
@@ -361,7 +400,7 @@ app.post('/scrap-asset', async (req, res) => {
 
 });
 
-app.get('/asset-history', async (req, res) => {
+app.get('/asset-history',checkAdmin, async (req, res) => {
 
     const issues = await Issue.findAll();
     const returns = await Return.findAll();
@@ -389,13 +428,13 @@ app.listen(3000, () => {
     console.log('Server is running on port 3000');
 });
 
-app.get('/categories',async(req, res)=>{
+app.get('/categories',checkAdmin,async(req, res)=>{
     const categories = await Category.findAll();
     res.render('categories/index',{
         categories:categories
     });
 });
 
-app.get('/add-category',(req,res)=>{
+app.get('/add-category',checkAdmin,(req,res)=>{
     res.render('categories/add');
 });
