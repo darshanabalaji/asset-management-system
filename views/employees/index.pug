@@ -1,0 +1,39 @@
+html
+  head
+    title Employees
+
+  body
+
+    h1 Employee List
+
+    form(action='/employees/search' method='GET')
+      input(type='text' name='keyword' placeholder='Search Employee')
+      button(type='submit') Search
+
+    br
+
+    table(border='1')
+      tr
+        th ID
+        th Employee Code
+        th Name
+        th Email
+        th Phone
+        th Department
+        th Action
+
+      each employee in employees
+        tr
+          td= employee.employee_id
+          td= employee.employee_code
+          td= employee.employee_name
+          td= employee.email
+          td= employee.phone
+          td= employee.department
+          td
+            a(href='/employees/edit/' + employee.employee_id) Edit
+            |  |
+            a(
+              href='/employees/delete/' + employee.employee_id
+              onclick="return confirm('Are you sure you want to delete this employee?')"
+            ) Delete

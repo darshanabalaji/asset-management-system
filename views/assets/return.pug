@@ -1,0 +1,29 @@
+html
+  head
+    title Return Asset
+
+  body
+
+    h1 Return Asset
+
+    form(action='/return-asset' method='POST')
+
+      div
+        label Employee Name
+        input(type='text' name='employee_name' required)
+
+      br
+
+      div
+        label Asset Name
+        input(type='text' name='asset_name' required)
+
+      br
+
+      div
+        label Return Date
+        input(type='date' name='return_date' required)
+
+      br
+
+      button(type='submit') Return Asset

@@ -1,0 +1,40 @@
+html
+  head
+    title Add Employee
+
+  body
+    h1 Add Employee
+
+    form(action="/add-employee" method="POST")
+
+      div
+        label Employee Name:
+        input(type="text" name="employee_name")
+
+      br
+
+      div
+        label Employee Code:
+        input(type="text" name="employee_code")
+
+      br
+
+      div
+        label Email:
+        input(type="email" name="email")
+
+      br
+
+      div
+        label Phone:
+        input(type="text" name="phone")
+
+      br
+
+      div
+        label Department:
+        input(type="text" name="department")
+
+      br
+
+      button(type="submit") Save Employee

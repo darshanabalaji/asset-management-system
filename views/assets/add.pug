@@ -1,0 +1,41 @@
+html
+  head
+    title Add Asset
+
+  body
+
+    h1 Add Asset
+
+    form(action='/add-asset' method='POST')
+
+      div
+        label Asset Name
+        input(type='text' name='asset_name' required)
+
+      br
+
+      div
+        label Asset Code
+        input(type='text' name='asset_code' required)
+
+      br
+
+      div
+        label Serial Number
+        input(type='text' name='serial_number')
+
+      br
+
+      div
+        label Asset Value
+        input(type='number' name='asset_value')
+
+      br
+
+      div
+        label Purchase Date
+        input(type='date' name='purchase_date')
+
+      br
+
+      button(type='submit') Save Asset

@@ -1,0 +1,23 @@
+html
+  head
+    title Stock View
+
+  body
+
+    h1 Asset Stock View
+
+    table(border='1')
+
+      tr
+        th Asset Code
+        th Asset Name
+        th Serial Number
+        th Status
+
+      each asset in assets
+
+        tr
+          td= asset.asset_code
+          td= asset.asset_name
+          td= asset.serial_number
+          td= asset.status

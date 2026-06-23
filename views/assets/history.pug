@@ -1,0 +1,51 @@
+html
+  head
+    title Asset History
+
+  body
+
+    h1 Asset History
+
+    h2 Issued Assets
+
+    table(border='1')
+      tr
+        th Employee
+        th Asset
+        th Date
+
+      each issue in issues
+        tr
+          td= issue.employee_name
+          td= issue.asset_name
+          td= issue.issue_date
+
+    br
+
+    h2 Returned Assets
+
+    table(border='1')
+      tr
+        th Employee
+        th Asset
+        th Date
+
+      each item in returns
+        tr
+          td= item.employee_name
+          td= item.asset_name
+          td= item.return_date
+
+    br
+
+    h2 Scrapped Assets
+
+    table(border='1')
+      tr
+        th Asset
+        th Date
+
+      each scrap in scraps
+        tr
+          td= scrap.asset_name
+          td= scrap.scrap_date

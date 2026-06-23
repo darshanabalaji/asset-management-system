@@ -1,0 +1,38 @@
+html
+  head
+    title Asset List
+
+  body
+
+    h1 Asset List
+
+    form(action='/assets/search' method='GET')
+     input(type='text' name='keyword' placeholder='Search Asset')
+     button(type='submit') Search
+
+    br
+
+    table(border='1')
+      tr
+        th ID
+        th Asset Name
+        th Asset Code
+        th Serial Number
+        th Asset Value
+        th Purchase Date
+        th Status
+        th Action 
+
+      each asset in assets
+        tr
+          td= asset.asset_id
+          td= asset.asset_name
+          td= asset.asset_code
+          td= asset.serial_number
+          td= asset.asset_value
+          td= asset.purchase_date
+          td= asset.status
+          td 
+           a(href='/assets/edit/'+asset.asset_id) Edit 
+           | |
+           a(href='/assets/delete/'+asset.asset_id) Delete

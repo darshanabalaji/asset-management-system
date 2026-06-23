@@ -1,0 +1,23 @@
+html
+  head
+    title Scrap Asset
+
+  body
+
+    h1 Scrap Asset
+
+    form(action='/scrap-asset' method='POST')
+
+      div
+        label Asset Name
+        input(type='text' name='asset_name' required)
+
+      br
+
+      div
+        label Scrap Date
+        input(type='date' name='scrap_date' required)
+
+      br
+
+      button(type='submit') Scrap Asset
